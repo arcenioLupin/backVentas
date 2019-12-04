@@ -37,25 +37,23 @@
 	
 <!-- 	<jee:jndi-lookup id="dataSourceMysql" jndi-name="java:/MySqlDSEjemplo1" expected-type="javax.sql.DataSource" /> -->
 
-	<bean id="dataSourceMysql" class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
-		<property name="poolPreparedStatements" value="true" />
+	<bean id="dataSourcePostgreSql" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="${basededatos.controlador}" />
 		<property name="url" value="${basededatos.url}" />
 		<property name="username" value="${basededatos.usuario}" />
 		<property name="password" value="${basededatos.contrasenya}" />
-		<property name="initialSize" value="3" />
+
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSourceMysql" />
+		<property name="dataSource" ref="dataSourcePostgreSql" />
 	</bean>
 
 	<mybatis:scan base-package="com.pe.ventas.back.daos.sql.mapeos" />
 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSourceMysql" />
+		<property name="dataSource" ref="dataSourcePostgreSql" />
 	</bean>
 
 	<cache:annotation-driven />

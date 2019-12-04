@@ -2,7 +2,7 @@ package com.pe.ventas.back.daos.sql.mapeos;
 
 interface UsuarioConsultas {
 
-    String SELECT_USUARIOS = "<script>SELECT * FROM ventas.Usuarios</script>";
+    String SELECT_USUARIOS = "<script>SELECT * FROM usuarios</script>";
    /* String INSERT_USUARIO = "<script>\n" + "INSERT INTO ejemplo_java_1.Usuarios \n" + "(alias,\n" + "correo,\n"
             + "contrasenya\n" + "<if test=\"acceso != null\">\n" + "    ,acceso\n" + "</if>\n"
             + "<if test=\"modificacion != null\">\n" + "    ,modificacion\n" + "</if>\n" + ") \n"

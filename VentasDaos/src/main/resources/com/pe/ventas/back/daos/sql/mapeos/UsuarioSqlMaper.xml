@@ -1,59 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.pe.ventas.back.daos.sql.mapeos.usuarios.UsuarioSqlMaper">
+<mapper namespace="com.pe.ventas.back.daos.sql.mapeos.UsuarioSqlMaper">
 
-	<select id="selectUnUsuario" parameterType="com.pe.ventas.back.dtos.daos.sql.usuarios.UsuarioSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.usuarios.UsuarioSqlDto">
+
+
+	<select id="selectUnUsuario" parameterType="com.pe.ventas.back.dtos.daos.sql.UsuarioSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.UsuarioSqlDto">
 		SELECT * FROM 
-		ventas.Usuarios
+		usuarios
 		<where>
-			<if test="id != null">id=#{id,jdbcType=INTEGER}</if>
-			<if test="alias != null"> AND alias=#{alias,jdbcType=VARCHAR}</if>
-			<if test="correo != null"> AND correo=#{correo,jdbcType=VARCHAR}</if>
-			<if test="contrasenya != null"> AND contrasenya=MD5(#{contrasenya,jdbcType=VARCHAR})</if>
+			<if test="usuarioId != null">"usuarioId"=#{usuarioId,jdbcType=INTEGER}</if>
+			<if test="usuarioUser != null"> AND "usuarioUser"=#{usuarioUser,jdbcType=VARCHAR}</if>
+			<if test="usuarioEmail != null"> AND "usuarioEmail"=#{usuarioEmail,jdbcType=VARCHAR}</if>
+			<if test="usuarioPassword != null"> AND "usuarioPassword"=#{usuarioPassword,jdbcType=VARCHAR}</if>
 			
 		</where>
 	</select>
 
-	<insert id="insert" parameterType="com.pe.ventas.back.dtos.daos.sql.usuarios.UsuarioSqlDto" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" parameterType="com.pe.ventas.back.dtos.daos.sql.UsuarioSqlDto" useGeneratedKeys="true" keyProperty="usuarioId">
 		INSERT INTO 
-		ventas.Usuarios 
+		usuarios 
 		(
-			alias,
-			correo,
-			contrasenya
-			<if test="acceso != null">,acceso</if>
-			<if test="modificacion != null">,modificacion</if>
+			"usuarioUser",
+			"usuarioEmail",
+			"usuarioPassword"
+			<if test="usuarioNombres != null">,"usuarioNombres"</if>
+			<if test="usuarioApePaterno != null">,"usuarioApePaterno"</if>
+			<if test="usuarioApeMaterno != null">,"usuarioApeMaterno"</if>
+			<if test="usuarioNumDoc != null">,"usuarioNumDoc"</if>
+			<if test="usuarioActivo != null">,"usuarioActivo"</if>
+			<if test="usuarioFechaInicio != null">,"usuarioFechaInicio"</if>
+			<if test="usuarioFechaFin != null">,"usuarioFechaFin"</if>
+			<if test="usuarioTelefono != null">,"usuarioTelefono"</if>
+			<if test="usuarioMovil != null">,"usuarioMovil"</if>
+			<if test="usuarioTelefono2 != null">,"usuarioTelefono2"</if>
+			<if test="usuarioNumAdmin != null">,"usuarioNumAdmin"</if>
+			<if test="usuarioFechaCreacion != null">,"usuarioFechaCreacion"</if>
+			<if test="usuarioUsuCrea != null">,"usuarioUsuCrea"</if>
+			<if test="tipoDocId != null">,"tipoDocId"</if>
 		) 
 		VALUES(
-			#{alias,jdbcType=VARCHAR},
-			#{correo,jdbcType=VARCHAR},
-			MD5(#{contrasenya,jdbcType=VARCHAR})
-			<if test="acceso != null">,#{acceso,jdbcType=TIMESTAMP}</if>
-			<if test="modificacion != null">,#{modificacion,jdbcType=TIMESTAMP}</if>
+			#{usuarioUser,jdbcType=VARCHAR},
+			#{usuarioEmail,jdbcType=VARCHAR},
+			#{usuarioPassword,jdbcType=VARCHAR}
+			<if test="usuarioNombres != null">,#{usuarioNombres,jdbcType=VARCHAR}</if>
+			<if test="usuarioApePaterno != null">,#{usuarioApePaterno,jdbcType=VARCHAR}</if>
+			<if test="usuarioApeMaterno != null">,#{usuarioApeMaterno,jdbcType=VARCHAR}</if>
+			<if test="usuarioNumDoc != null">,#{usuarioNumDoc,jdbcType=VARCHAR}</if>
+			<if test="usuarioActivo != null">,#{usuarioActivo,jdbcType=VARCHAR}</if>
+			<if test="usuarioFechaInicio != null">,#{usuarioFechaInicio,jdbcType=TIMESTAMP}</if>
+			<if test="usuarioFechaFin != null">,#{usuarioFechaFin,jdbcType=TIMESTAMP}</if>
+			<if test="usuarioTelefono != null">,#{usuarioTelefono,jdbcType=VARCHAR}</if>
+			<if test="usuarioMovil != null">,#{usuarioMovil,jdbcType=VARCHAR}</if>
+			<if test="usuarioTelefono2 != null">,#{usuarioTelefono2,jdbcType=VARCHAR}</if>
+			<if test="usuarioNumAdmin != null">,#{usuarioNumAdmin,jdbcType=VARCHAR}</if>
+			<if test="usuarioFechaCreacion != null">,#{usuarioFechaCreacion,jdbcType=TIMESTAMP}</if>
+			<if test="usuarioUsuCrea != null">,#{usuarioUsuCrea,jdbcType=VARCHAR}</if>
+			<if test="tipoDocId != null">,#{tipoDocId,jdbcType=VARCHAR}</if>
 		)
 	</insert>
 	
-	<update id="update" parameterType="com.pe.ventas.back.dtos.daos.sql.usuarios.UsuarioSqlDto">
+	<update id="update" parameterType="com.pe.ventas.back.dtos.daos.sql.UsuarioSqlDto">
 		UPDATE 
-		ventas.Usuarios 
+		usuarios 
 		<set>
-			<if test="alias != null">alias=#{alias,jdbcType=VARCHAR},</if>
-			<if test="correo != null">correo=#{correo,jdbcType=VARCHAR},</if>
-			<if test="contrasenya != null">contrasenya=MD5(#{contrasenya,jdbcType=VARCHAR}),</if>
-			<if test="acceso != null">acceso=#{acceso,jdbcType=TIMESTAMP},</if>
-			<if test="modificacion != null">modificacion=#{modificacion,jdbcType=TIMESTAMP}</if>
+			<if test="usuarioUser != null">"usuarioUser"=#{usuarioUser,jdbcType=VARCHAR},</if>
+			<if test="usuarioEmail != null">"usuarioEmail"=#{usuarioEmail,jdbcType=VARCHAR},</if>
+			<if test="usuarioPassword != null">"usuarioPassword"=#{usuarioPassword,jdbcType=VARCHAR},</if>
+			<if test="usuarioNombres != null">"usuarioNombres"=#{usuarioNombres,jdbcType=VARCHAR},</if>
+			<if test="usuarioApePaterno != null">"usuarioApePaterno"=#{usuarioApePaterno,jdbcType=VARCHAR},</if>
+			<if test="usuarioApeMaterno != null">"usuarioApeMaterno"=#{usuarioApeMaterno,jdbcType=VARCHAR},</if>
+			<if test="usuarioNumDoc != null">"usuarioNumDoc"=#{usuarioNumDoc,jdbcType=VARCHAR},</if>
+			<if test="usuarioActivo != null">"usuarioActivo"=#{usuarioActivo,jdbcType=VARCHAR},</if>
+			<if test="usuarioFechaInicio != null">"usuarioFechaInicio"=#{usuarioFechaInicio,jdbcType=TIMESTAMP},</if>
+			<if test="usuarioFechaFin != null">"usuarioFechaFin"=#{usuarioFechaFin,jdbcType=TIMESTAMP},</if>
+			<if test="usuarioTelefono != null">"usuarioTelefono"=#{usuarioTelefono,jdbcType=VARCHAR},</if>
+			<if test="usuarioMovil != null">"usuarioMovil"=#{usuarioMovil,jdbcType=VARCHAR},</if>
+			<if test="usuarioTelefono2 != null">"usuarioTelefono2"=#{usuarioTelefono2,jdbcType=VARCHAR},</if>
+			<if test="usuarioNumAdmin != null">"usuarioNumAdmin"=#{usuarioNumAdmin,jdbcType=VARCHAR},</if>
+			<if test="tipoDocId != null">"tipoDocId"=#{tipoDocId,jdbcType=VARCHAR},</if>
+			<if test="usuarioFechaMod != null">"usuarioFechaMod"=#{usuarioFechaMod,jdbcType=TIMESTAMP}</if>
+			<if test="usuarioUsuMod != null">"usuarioUsuMod"=#{usuarioUsuMod,jdbcType=VARCHAR}</if>
 		</set>  
-		where id=#{id,jdbcType=INTEGER}
+		where "usuarioId"=#{usuarioId,jdbcType=INTEGER}
 	</update>
 	
-	<delete id="delete" parameterType="com.pe.ventas.back.dtos.daos.sql.usuarios.UsuarioSqlDto">
+	<delete id="delete" parameterType="com.pe.ventas.back.dtos.daos.sql.UsuarioSqlDto">
 		DELETE FROM 
-		ventas.Usuarios  
+		usuarios  
 		<where>
-			<if test="id != null">id=#{id,jdbcType=INTEGER}</if>
-			<if test="alias != null"> AND alias=#{alias,jdbcType=VARCHAR}</if>
-			<if test="correo != null"> AND correo=#{correo,jdbcType=VARCHAR}</if>
+			<if test="usuarioId != null">"usuarioId"=#{usuarioId,jdbcType=INTEGER}</if>
+			<if test="usuarioUser != null"> AND "usuarioUser"=#{usuarioUser,jdbcType=VARCHAR}</if>
+			<if test="usuarioEmail != null"> AND "usuarioEmail"=#{usuarioEmail,jdbcType=VARCHAR}</if>
 		</where>
 	</delete>
 

@@ -60,7 +60,7 @@ public class UsuarioDao implements IUsuarioDao {
     }
 
     @Override
-    @CacheEvict(value = "usuarios", key = "#usuario.identificador")
+    @CacheEvict(value = "usuarios", key = "#usuario.usuarioId")
     @Transactional
     public Boolean eliminar(final UsuarioDaoDto usuario) {
         final UsuarioSqlDto usuarioSqlDto = UsuarioDtoMaper.INSTANCE.usuarioDaoDtoAUsuarioSqlDto(usuario);

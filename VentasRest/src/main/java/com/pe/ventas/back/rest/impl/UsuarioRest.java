@@ -146,7 +146,7 @@ public class UsuarioRest implements IVentaRest {
       	 String id = request.params(":id");
       	 //final UsuarioServicioDto usuarioServicioDto = UsuarioDtoMaper.INSTANCE.usuarioRestDtoAUsuarioServicioDto(usuario);
       	 UsuarioServicioDto usuarioServicioDto = new UsuarioServicioDto();
-      	usuarioServicioDto.setUsuarioId(id);
+      	usuarioServicioDto.setUsuarioId(Integer.parseInt(id));
       	 final Boolean isUsuarioEliminado = usuarioServicio.eliminar(usuarioServicioDto);
       	 
       	 response.type(CONTENT_TYPE);
@@ -167,7 +167,7 @@ public class UsuarioRest implements IVentaRest {
       String id = request.params(":id");
   	//CategoriaServicioDto categoriaServicioDto = CategoriaDtoMaper.INSTANCE.categoriaRestDtoAcategoriaServicioDto(categoria);
       UsuarioServicioDto usuarioServicioDto = new UsuarioServicioDto();
-      usuarioServicioDto.setUsuarioId(id);
+      usuarioServicioDto.setUsuarioId(Integer.parseInt(id));
       usuarioServicioDto = usuarioServicio.obtenerUnUsuario(usuarioServicioDto);
 	   	 
 	   	 response.type(CONTENT_TYPE);

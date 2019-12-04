@@ -39,12 +39,14 @@
 		</dependency>
 
 		<!-- Dependencias de software de terceros -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-connector-java.version}</version>
-		</dependency>
-		<dependency>
+		   <dependency>
+		        <groupId>org.postgresql</groupId>
+		        <artifactId>postgresql</artifactId>
+		        <version>42.2.0</version>
+		        <scope>runtime</scope>
+		    </dependency>
+		    
+		    <dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.4.5</version>

@@ -63,6 +63,7 @@ public class UsuarioServicio implements IUsuarioServicio {
     @Override
     public Boolean actualizar(final UsuarioServicioDto usuario) {
         final UsuarioDaoDto usuarioDaoDto = UsuarioDtoMaper.INSTANCE.usuarioServicioDtoAUsuarioDaoDto(usuario);
+        usuarioDaoDto.setUsuarioFechaMod(new Date());
         return usuarioDao.actualizar(usuarioDaoDto);
     }
     
@@ -70,6 +71,7 @@ public class UsuarioServicio implements IUsuarioServicio {
     public Boolean insertarUsuario(final UsuarioServicioDto usuario) {
     	LOG.debug("Insertar usuario: "+usuario);
     	UsuarioDaoDto usuarioDaoDto = UsuarioDtoMaper.INSTANCE.usuarioServicioDtoAUsuarioDaoDto(usuario);
+    	usuarioDaoDto.setUsuarioFechaCreacion(new Date());
     	usuarioDaoDto = usuarioDao.crear(usuarioDaoDto);
     	LOG.debug("Resultado usuarioDaoDto: "+usuarioDaoDto);
     	 if ((usuarioDaoDto != null) && (usuarioDaoDto.getUsuarioId() != null)) {

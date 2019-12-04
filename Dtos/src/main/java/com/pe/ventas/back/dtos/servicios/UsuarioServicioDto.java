@@ -14,7 +14,7 @@ public class UsuarioServicioDto implements Serializable {
 
     private static final long serialVersionUID = 3295452824284665006L;
     
-	private String usuarioId;
+	private Integer usuarioId;
 	private String usuarioNombres;
 	private String usuarioApePaterno;
 	private String usuarioApeMaterno;
@@ -30,7 +30,11 @@ public class UsuarioServicioDto implements Serializable {
 	private String usuarioNumAdmin;
 	private String usuarioUser;
 	private String usuarioNumDoc;
-	private String tipoDocId;
+	private Integer tipoDocId;
+	private Date usuarioFechaMod;
+	private Date usuarioFechaCreacion;
+	private String usuarioUsuMod;
+	private String usuarioUsuCrea;
 
 
     public String aJson() {
