@@ -24,11 +24,13 @@ public class UsuarioServicio implements IUsuarioServicio {
     private IUsuarioDao usuarioDao;
 
     @Override
-    public Boolean autenticar(final UsuarioServicioDto usuario) {
+    public UsuarioServicioDto autenticar(final UsuarioServicioDto usuario) {
         LOG.debug("autenticar: " + usuario);
         UsuarioDaoDto usuarioDaoDto = UsuarioDtoMaper.INSTANCE.usuarioServicioDtoAUsuarioDaoDto(usuario);
         usuarioDaoDto = usuarioDao.obtenerUnUsuario(usuarioDaoDto);
         LOG.debug("Resultado Dao: " + usuarioDaoDto);
+        
+        UsuarioServicioDto usuarioServicioDto = UsuarioDtoMaper.INSTANCE.usuarioDaoDtoAUsuarioServicioDto(usuarioDaoDto);
 
         if ((usuarioDaoDto != null) && (usuarioDaoDto.getUsuarioId() != null) ) {
 
@@ -43,10 +45,10 @@ public class UsuarioServicio implements IUsuarioServicio {
                 }
             }
 
-            return true;
+            
         }
 
-        return false;
+        return usuarioServicioDto;
     }
 
     @Override

@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 import com.pe.ventas.back.dtos.base.JsonDto;
 import com.pe.ventas.back.dtos.rest.UsuarioRestDto;
 import com.pe.ventas.back.dtos.rest.base.ResultResponse;
+import com.pe.ventas.back.dtos.rest.base.UsuarioResponse;
 import com.pe.ventas.back.dtos.servicios.UsuarioServicioDto;
 import com.pe.ventas.back.rest.main.IVentaRest;
 import com.pe.ventas.back.servicios.IUsuarioServicio;
@@ -74,20 +75,25 @@ public class UsuarioRest implements IVentaRest {
 
     }
 
-    private ResultResponse autenticacion(final Request request, final Response response) {
+    private UsuarioResponse autenticacion(final Request request, final Response response) {
         validarContentType(request, response);
         final UsuarioRestDto usuario = JsonDto.aJson(request.body(), UsuarioRestDto.class);
         final UsuarioServicioDto usuarioServicioDto = UsuarioDtoMaper.INSTANCE
                 .usuarioRestDtoAUsuarioServicioDto(usuario);
-        final Boolean autenticar = usuarioServicio.autenticar(usuarioServicioDto);
-
+        
+        UsuarioServicioDto usuarioServicioDtoAux = new UsuarioServicioDto();
+        usuarioServicioDtoAux = usuarioServicio.autenticar(usuarioServicioDto);
+        
+      
         response.type(CONTENT_TYPE);
-        if (autenticar) {
-            return new ResultResponse.Builder().build();
+        if (usuarioServicioDtoAux != null) {
+  	   	  return new UsuarioResponse.Builder()
+                  .usuario(UsuarioDtoMaper.INSTANCE.usuarioServicioDtoAUsuarioRestDto(usuarioServicioDtoAux))
+                  .build();
         }
 
         response.status(500);
-        return new ResultResponse.Builder().code(500).message("Fallo al autenticar").build();
+        return new UsuarioResponse.Builder().code(500).message("Fallo al autenticar").build();
     }
 
     private ResultResponse todosLosUsuarios(final Request request, final Response response) {

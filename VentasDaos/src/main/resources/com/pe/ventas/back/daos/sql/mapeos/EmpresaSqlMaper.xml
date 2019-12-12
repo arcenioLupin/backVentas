@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pe.ventas.back.daos.sql.mapeos.EmpresaSqlMaper">
+
+	<select id="selectTodasEmpresas" parameterType="com.pe.ventas.back.dtos.daos.sql.EmpresaSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.EmpresaSqlDto">
+		SELECT * FROM 
+		empresas
+	</select>
+
+	<select id="selectUnaEmpresa" parameterType="com.pe.ventas.back.dtos.daos.sql.EmpresaSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.EmpresaSqlDto">
+		SELECT * FROM 
+		empresas
+		<where>
+			<if test="empresaId != null">"empresaId"=#{empresaId,jdbcType=INTEGER}</if>
+			<if test="empresaCodigo != null"> AND "empresaCodigo"=#{empresaCodigo,jdbcType=VARCHAR}</if>			
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.pe.ventas.back.dtos.daos.sql.EmpresaSqlDto" useGeneratedKeys="true" keyProperty="empresaId">
+		INSERT INTO 
+		empresas 
+		(
+			"empresaCodigo",
+			"empresaRazonSoc",
+			"empresaGiro"
+			<if test="empresaSigla != null">,"empresaSigla"</if>
+			<if test="empresaRepLegal != null">,"empresaRepLegal"</if>
+			<if test="empresaDireccion != null">,"empresaDireccion"</if>
+			<if test="empresaCodPais != null">,"empresaCodPais"</if>
+			<if test="empresaCodProv != null">,"empresaCodProv"</if>
+			<if test="empresaCodDep != null">,"empresaCodDep"</if>
+			<if test="empresaTelf != null">,"empresaTelf"</if>
+			<if test="empresaEmail != null">,"empresaEmail"</if>
+			<if test="empresaRegEsp != null">,"empresaRegEsp"</if>
+			<if test="empresaRutaLogo != null">,"empresaRutaLogo"</if>
+			<if test="empresaTipo != null">,"empresaTipo"</if>
+			<if test="empresaRuc != null">,"empresaRuc"</if>
+			<if test="empresaAbiCerr != null">,"empresaAbiCerr"</if>
+			<if test="empresaRutRepLeg != null">,"empresaRutRepLeg"</if>
+			<if test="empresaCiudad != null">,"empresaCiudad"</if>
+			<if test="empresaRegLab != null">,"empresaRegLab"</if>
+			<if test="empresaSiteWeb != null">,"empresaSiteWeb"</if>
+		) 
+		VALUES(
+			#{empresaCodigo,jdbcType=VARCHAR},
+			#{empresaRazonSoc,jdbcType=VARCHAR},
+			#{empresaGiro,jdbcType=VARCHAR}
+			<if test="empresaSigla != null">,#{empresaSigla,jdbcType=VARCHAR}</if>
+			<if test="empresaRepLegal != null">,#{empresaRepLegal,jdbcType=VARCHAR}</if>
+			<if test="empresaDireccion != null">,#{empresaDireccion,jdbcType=VARCHAR}</if>
+			<if test="empresaCodPais != null">,#{empresaCodPais,jdbcType=VARCHAR}</if>
+			<if test="empresaCodProv != null">,#{empresaCodProv,jdbcType=VARCHAR}</if>
+			<if test="empresaCodDep != null">,#{empresaCodDep,jdbcType=VARCHAR}</if>
+			<if test="empresaTelf != null">,#{empresaTelf,jdbcType=VARCHAR}</if>
+			<if test="empresaEmail != null">,#{empresaEmail,jdbcType=VARCHAR}</if>
+			<if test="empresaRegEsp != null">,#{empresaRegEsp,jdbcType=VARCHAR}</if>
+			<if test="empresaRutaLogo != null">,#{empresaRutaLogo,jdbcType=VARCHAR}</if>
+			<if test="empresaTipo != null">,#{empresaTipo,jdbcType=VARCHAR}</if>
+			<if test="empresaRuc != null">,#{empresaRuc,jdbcType=VARCHAR}</if>
+			<if test="empresaAbiCerr != null">,#{empresaAbiCerr,jdbcType=VARCHAR}</if>
+			<if test="empresaRutRepLeg != null">,#{empresaRutRepLeg,jdbcType=VARCHAR}</if>
+			<if test="empresaCiudad != null">,#{empresaCiudad,jdbcType=VARCHAR}</if>
+			<if test="empresaRegLab != null">,#{empresaRegLab,jdbcType=VARCHAR}</if>
+			<if test="empresaSiteWeb != null">,#{empresaSiteWeb,jdbcType=VARCHAR}</if>
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.pe.ventas.back.dtos.daos.sql.EmpresaSqlDto">
+		UPDATE 
+		empresas 
+		<set>
+			<if test="empresaCodigo != null">"empresaCodigo"=#{empresaCodigo,jdbcType=VARCHAR},</if>
+			<if test="empresaRazonSoc != null">"empresaRazonSoc"=#{empresaRazonSoc,jdbcType=VARCHAR},</if>
+			<if test="empresaGiro != null">"empresaGiro"=#{empresaGiro,jdbcType=VARCHAR},</if>
+			<if test="empresaSigla != null">"empresaSigla"=#{empresaSigla,jdbcType=VARCHAR},</if>
+			<if test="empresaRepLegal != null">"empresaRepLegal"=#{empresaRepLegal,jdbcType=VARCHAR},</if>
+			<if test="empresaDireccion != null">"empresaDireccion"=#{empresaDireccion,jdbcType=VARCHAR},</if>
+			<if test="empresaCodPais != null">"empresaCodPais"=#{empresaCodPais,jdbcType=VARCHAR},</if>
+			<if test="empresaCodProv != null">"empresaCodProv"=#{empresaCodProv,jdbcType=VARCHAR},</if>
+			<if test="empresaCodDep != null">"empresaCodDep"=#{empresaCodDep,jdbcType=VARCHAR},</if>
+			<if test="empresaTelf != null">"empresaTelf"=#{empresaTelf,jdbcType=VARCHAR},</if>
+			<if test="empresaEmail != null">"empresaEmail"=#{empresaEmail,jdbcType=VARCHAR},</if>
+			<if test="empresaRegEsp != null">"empresaRegEsp"=#{empresaRegEsp,jdbcType=VARCHAR},</if>
+			<if test="empresaRutaLogo != null">"empresaRutaLogo"=#{empresaRutaLogo,jdbcType=VARCHAR},</if>
+			<if test="empresaTipo != null">"empresaTipo"=#{empresaTipo,jdbcType=VARCHAR},</if>
+			<if test="empresaRuc != null">"empresaRuc"=#{empresaRuc,jdbcType=VARCHAR},</if>
+			<if test="empresaAbiCerr != null">"empresaAbiCerr"=#{empresaAbiCerr,jdbcType=VARCHAR},</if>
+			<if test="empresaRutRepLeg != null">"empresaRutRepLeg"=#{empresaRutRepLeg,jdbcType=VARCHAR},</if>
+            <if test="empresaCiudad != null">"empresaCiudad"=#{empresaCiudad,jdbcType=VARCHAR}</if>
+            <if test="empresaRegLab != null">"empresaRegLab"=#{empresaRegLab,jdbcType=VARCHAR}</if>
+             <if test="empresaSiteWeb != null">"empresaSiteWeb"=#{empresaSiteWeb,jdbcType=VARCHAR}</if>
+		</set>  
+		where "empresaId"=#{empresaId,jdbcType=INTEGER}
+	</update>
+	
+	<delete id="delete" parameterType="com.pe.ventas.back.dtos.daos.sql.EmpresaSqlDto">
+		DELETE FROM 
+		empresas  
+		<where>
+			<if test="empresaId != null">"empresaId"=#{empresaId,jdbcType=INTEGER}</if>
+			<if test="empresaCodigo != null"> AND "empresaCodigo"=#{empresaCodigo,jdbcType=VARCHAR}</if>
+		</where>
+	</delete>
+
+</mapper>

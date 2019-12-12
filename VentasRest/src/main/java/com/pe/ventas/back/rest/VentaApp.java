@@ -28,6 +28,7 @@ public class VentaApp implements SparkApplication {
     @Override
     public void init() {
         final IVentaRest usuarioRest = (IVentaRest) context.getBean("usuarioRest");
+        final IVentaRest empresaRest = (IVentaRest) context.getBean("empresaRest");
         
         enableCORS("*", "*", "*");
         beforeServer();
@@ -35,6 +36,7 @@ public class VentaApp implements SparkApplication {
                 .message("Works!! " + UUID.randomUUID().toString()).build());
 
         usuarioRest.routers();
+        empresaRest.routers();
         
         afterServer();
 

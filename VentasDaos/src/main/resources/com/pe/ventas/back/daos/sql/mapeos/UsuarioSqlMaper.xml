@@ -79,8 +79,9 @@
 			<if test="usuarioTelefono2 != null">"usuarioTelefono2"=#{usuarioTelefono2,jdbcType=VARCHAR},</if>
 			<if test="usuarioNumAdmin != null">"usuarioNumAdmin"=#{usuarioNumAdmin,jdbcType=VARCHAR},</if>
 			<if test="tipoDocId != null">"tipoDocId"=#{tipoDocId,jdbcType=VARCHAR},</if>
-			<if test="usuarioFechaMod != null">"usuarioFechaMod"=#{usuarioFechaMod,jdbcType=TIMESTAMP}</if>
-			<if test="usuarioUsuMod != null">"usuarioUsuMod"=#{usuarioUsuMod,jdbcType=VARCHAR}</if>
+			<if test="usuarioAcceso != null">"usuarioAcceso"=#{usuarioAcceso,jdbcType=TIMESTAMP},</if>
+			<if test="usuarioUsuMod != null">"usuarioUsuMod"=#{usuarioUsuMod,jdbcType=VARCHAR},</if>
+            <if test="usuarioFechaMod != null">"usuarioFechaMod"=#{usuarioFechaMod,jdbcType=TIMESTAMP}</if>
 		</set>  
 		where "usuarioId"=#{usuarioId,jdbcType=INTEGER}
 	</update>

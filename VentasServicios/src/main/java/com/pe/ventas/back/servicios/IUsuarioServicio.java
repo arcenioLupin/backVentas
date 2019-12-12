@@ -6,7 +6,7 @@ import com.pe.ventas.back.dtos.servicios.UsuarioServicioDto;
 
 public interface IUsuarioServicio {
 
-    Boolean autenticar(UsuarioServicioDto usuario);
+	UsuarioServicioDto autenticar(UsuarioServicioDto usuario);
 
     Boolean actualizar(UsuarioServicioDto usuario);
     
