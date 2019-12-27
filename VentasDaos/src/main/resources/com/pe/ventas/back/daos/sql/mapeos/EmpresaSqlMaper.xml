@@ -87,8 +87,8 @@
 			<if test="empresaRuc != null">"empresaRuc"=#{empresaRuc,jdbcType=VARCHAR},</if>
 			<if test="empresaAbiCerr != null">"empresaAbiCerr"=#{empresaAbiCerr,jdbcType=VARCHAR},</if>
 			<if test="empresaRutRepLeg != null">"empresaRutRepLeg"=#{empresaRutRepLeg,jdbcType=VARCHAR},</if>
-            <if test="empresaCiudad != null">"empresaCiudad"=#{empresaCiudad,jdbcType=VARCHAR}</if>
-            <if test="empresaRegLab != null">"empresaRegLab"=#{empresaRegLab,jdbcType=VARCHAR}</if>
+            <if test="empresaCiudad != null">"empresaCiudad"=#{empresaCiudad,jdbcType=VARCHAR},</if>
+            <if test="empresaRegLab != null">"empresaRegLab"=#{empresaRegLab,jdbcType=VARCHAR},</if>
              <if test="empresaSiteWeb != null">"empresaSiteWeb"=#{empresaSiteWeb,jdbcType=VARCHAR}</if>
 		</set>  
 		where "empresaId"=#{empresaId,jdbcType=INTEGER}

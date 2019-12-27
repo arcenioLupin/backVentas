@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pe.ventas.back.daos.sql.mapeos.PerfilSqlMaper">
+
+	<select id="selectTodosPerfiles" parameterType="com.pe.ventas.back.dtos.daos.sql.PerfilSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.PerfilSqlDto">
+		SELECT * FROM 
+		perfiles
+	</select>
+
+	<select id="selectUnPerfil" parameterType="com.pe.ventas.back.dtos.daos.sql.PerfilSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.PerfilSqlDto">
+		SELECT * FROM 
+		perfiles
+		<where>
+			<if test="perfilId != null">"perfilId"=#{perfilId,jdbcType=INTEGER}</if>			
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.pe.ventas.back.dtos.daos.sql.PerfilSqlDto" useGeneratedKeys="true" keyProperty="perfilId">
+		INSERT INTO 
+		perfiles 
+		(
+			"perfilDescripcion",
+			"perfilActivo"
+			<if test="perfilUsuCreacion != null">,"perfilUsuCreacion"</if>
+			<if test="perfilFechaCreacion != null">,"perfilFechaCreacion"</if>
+
+		) 
+		VALUES(
+			#{perfilDescripcion,jdbcType=VARCHAR},
+			#{perfilActivo,jdbcType=VARCHAR}
+			<if test="perfilUsuCreacion != null">,#{perfilUsuCreacion,jdbcType=VARCHAR}</if>
+			<if test="perfilFechaCreacion != null">,#{perfilFechaCreacion,jdbcType=TIMESTAMP}</if>
+
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.pe.ventas.back.dtos.daos.sql.PerfilSqlDto">
+		UPDATE 
+		perfiles 
+		<set>
+			<if test="perfilDescripcion != null">"perfilDescripcion"=#{perfilDescripcion,jdbcType=VARCHAR},</if>
+			<if test="perfilActivo != null">"perfilActivo"=#{perfilActivo,jdbcType=VARCHAR},</if>
+			<if test="perfilUsuMod != null">"perfilUsuMod"=#{perfilUsuMod,jdbcType=VARCHAR},</if>
+			<if test="perfilFechaMod != null">"perfilFechaMod"=#{perfilFechaMod,jdbcType=TIMESTAMP}</if>
+
+		</set>  
+		where "perfilId"=#{perfilId,jdbcType=INTEGER}
+	</update>
+	
+	<delete id="delete" parameterType="com.pe.ventas.back.dtos.daos.sql.PerfilSqlDto">
+		DELETE FROM 
+		perfiles  
+		<where>
+			<if test="perfilId != null">"perfilId"=#{perfilId,jdbcType=INTEGER}</if>
+		</where>
+	</delete>
+
+</mapper>

@@ -29,6 +29,8 @@ public class VentaApp implements SparkApplication {
     public void init() {
         final IVentaRest usuarioRest = (IVentaRest) context.getBean("usuarioRest");
         final IVentaRest empresaRest = (IVentaRest) context.getBean("empresaRest");
+        final IVentaRest regimenLaboralRest = (IVentaRest) context.getBean("regimenLaboralRest");
+        final IVentaRest perfilRest = (IVentaRest) context.getBean("perfilRest");
         
         enableCORS("*", "*", "*");
         beforeServer();
@@ -37,6 +39,8 @@ public class VentaApp implements SparkApplication {
 
         usuarioRest.routers();
         empresaRest.routers();
+        regimenLaboralRest.routers();
+        perfilRest.routers();
         
         afterServer();
 

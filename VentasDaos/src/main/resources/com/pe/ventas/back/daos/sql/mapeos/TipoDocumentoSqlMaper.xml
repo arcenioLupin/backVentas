@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pe.ventas.back.daos.sql.mapeos.TipoDocumentoSqlMaper">
+
+	<select id="selectTodosTipoDocumentos" parameterType="com.pe.ventas.back.dtos.daos.sql.TipoDocumentoSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.TipoDocumentoSqlDto">
+		SELECT * FROM 
+		tipo_documento
+	</select>
+
+	<select id="selectUnTipoDocumento" parameterType="com.pe.ventas.back.dtos.daos.sql.TipoDocumentoSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.TipoDocumentoSqlDto">
+		SELECT * FROM 
+		tipo_documento
+		<where>
+			<if test="tipoDocId != null">"tipoDocId"=#{tipoDocId,jdbcType=INTEGER}</if>			
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.pe.ventas.back.dtos.daos.sql.TipoDocumentoSqlDto" useGeneratedKeys="true" keyProperty="tipoDocId">
+		INSERT INTO 
+		tipo_documento 
+		(
+			"tipoDocDesc"
+
+		) 
+		VALUES(
+			#{TipoDocumentoDescripcion,jdbcType=VARCHAR}
+
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.pe.ventas.back.dtos.daos.sql.TipoDocumentoSqlDto">
+		UPDATE 
+		tipo_documento 
+		<set>
+			<if test="tipoDocDesc != null">"tipoDocDesc"=#{tipoDocDesc,jdbcType=VARCHAR},</if>
+		</set>  
+		where "tipoDocId"=#{tipoDocId,jdbcType=INTEGER}
+	</update>
+	
+	<delete id="delete" parameterType="com.pe.ventas.back.dtos.daos.sql.TipoDocumentoSqlDto">
+		DELETE FROM 
+		tipo_documento  
+		<where>
+			<if test="tipoDocId != null">"tipoDocId"=#{tipoDocId,jdbcType=INTEGER}</if>
+		</where>
+	</delete>
+
+</mapper>

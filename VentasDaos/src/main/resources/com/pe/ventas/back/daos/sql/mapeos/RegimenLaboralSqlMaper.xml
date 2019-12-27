@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pe.ventas.back.daos.sql.mapeos.RegimenLaboralSqlMaper">
+
+	<select id="selectTodosRegimenLaboral" parameterType="com.pe.ventas.back.dtos.daos.sql.RegimenLaboralSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.RegimenLaboralSqlDto">
+		SELECT * FROM 
+		regimen_laboral
+	</select>
+
+	<select id="selectUnRegimenLaboral" parameterType="com.pe.ventas.back.dtos.daos.sql.RegimenLaboralSqlDto"  resultType="com.pe.ventas.back.dtos.daos.sql.RegimenLaboralSqlDto">
+		SELECT * FROM 
+		regimen_laboral
+		<where>
+			<if test="regLaboId != null">"regLaboId"=#{regLaboId,jdbcType=INTEGER}</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.pe.ventas.back.dtos.daos.sql.RegimenLaboralSqlDto" useGeneratedKeys="true" keyProperty="regLaboId">
+		INSERT INTO 
+		regimen_laboral 
+		(
+			"regLaboTipo",
+			"regLaboJld",
+			"regLaboPhe"
+			<if test="regLaboUsuCrea != null">,"regLaboUsuCrea"</if>
+			<if test="regLaboFecCrea != null">,"regLaboFecCrea"</if>
+
+		) 
+		VALUES(
+			#{regLaboTipo,jdbcType=VARCHAR},
+			#{regLaboJld,jdbcType=VARCHAR},
+			#{regLaboPhe,jdbcType=VARCHAR}
+			<if test="regLaboUsuCrea != null">,#{regLaboUsuCrea,jdbcType=VARCHAR}</if>
+			<if test="regLaboFecCrea != null">,#{RegimenLaboralRepLegal,jdbcType=TIMESTAMP}</if>
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.pe.ventas.back.dtos.daos.sql.RegimenLaboralSqlDto">
+		UPDATE 
+		regimen_laboral 
+		<set>
+			<if test="regLaboTipo != null">"regLaboTipo"=#{regLaboTipo,jdbcType=VARCHAR},</if>
+			<if test="regLaboJld != null">"regLaboJld"=#{regLaboJld,jdbcType=VARCHAR},</if>
+			<if test="regLaboPhe != null">"regLaboPhe"=#{regLaboPhe,jdbcType=VARCHAR},</if>
+			<if test="regLaboUsuMod != null">"regLaboUsuMod"=#{regLaboUsuMod,jdbcType=VARCHAR},</if>
+			<if test="regLaboFecMod != null">"regLaboFecMod"=#{regLaboFecMod,jdbcType=VARCHAR},</if>
+			
+		</set>  
+		where "regLaboId"=#{regLaboId,jdbcType=INTEGER}
+	</update>
+	
+	<delete id="delete" parameterType="com.pe.ventas.back.dtos.daos.sql.RegimenLaboralSqlDto">
+		DELETE FROM 
+		regimen_laboral  
+		<where>
+			<if test="regLaboId != null">"regLaboId"=#{regLaboId,jdbcType=INTEGER}</if>
+		</where>
+	</delete>
+
+</mapper>
